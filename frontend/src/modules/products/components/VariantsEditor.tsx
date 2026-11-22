@@ -1,4 +1,4 @@
-import { ArrowDown, ArrowUp, ChevronDown, Plus, Sparkles, Trash2 } from 'lucide-react';
+import { ArrowDown, ArrowUp, Plus, Sparkles, Trash2 } from 'lucide-react';
 import { useId, useState } from 'react';
 import { useFieldArray, useWatch, type UseFormReturn } from 'react-hook-form';
 import { buttonClassName } from '../../../core/components/buttonStyles';
@@ -13,6 +13,7 @@ import {
   variantAvailabilities,
   type VariantFormValues,
 } from '../schemas/productSchema';
+import { variantLabel } from '../utils/productFormDefaults';
 import { compareSizes, swatchFor } from '../utils/variantOptions';
 
 type Form = UseFormReturn<ProductFormValues>;
@@ -27,13 +28,9 @@ const splitList = (value: string) => [
   ),
 ];
 
-/** Libellé automatique d'une variante : « Couleur · Taille ». */
-const variantLabel = (color: string, size: string) =>
-  [color.trim(), size.trim()].filter(Boolean).join(' · ');
-
 /** Variante par défaut d'un nouveau produit, remplaçable par la génération. */
 const isPlaceholder = (variant: VariantFormValues) =>
-  !variant.id && !variant.packaging && (variant.unit === 'unité' || variant.unit === '');
+  !variant.id && !variant.packaging && ['unité', 'Taille unique', ''].includes(variant.unit);
 
 const availabilityTone: Record<VariantFormValues['availability'], string> = {
   available: 'bg-emerald-50 text-emerald-800 ring-emerald-200',
@@ -178,8 +175,6 @@ function VariantRow({
   const variant = useWatch({ control: form.control, name: `variants.${index}` });
   const fieldErrors = form.formState.errors.variants?.[index];
   const prefix = `variant-${fieldId}`;
-  const [open, setOpen] = useState(false);
-  const hasAdvancedError = Boolean(fieldErrors?.label || fieldErrors?.sku);
   const swatch = variant.packaging ? swatchFor(variant.packaging) : null;
   const price = Number(variant.indicativePrice);
 
@@ -308,9 +303,8 @@ function VariantRow({
           <input
             id={`${prefix}-price`}
             inputMode="numeric"
-            readOnly={variant.priceOnRequest}
-            placeholder={variant.priceOnRequest ? 'Sur demande' : '6500'}
-            className={cn(inputClassName, 'tabular-nums read-only:bg-ivory')}
+            placeholder="Vide : sur demande"
+            className={cn(inputClassName, 'tabular-nums')}
             aria-invalid={fieldErrors?.indicativePrice ? true : undefined}
             aria-describedby={describedBy(`${prefix}-price`, fieldErrors?.indicativePrice?.message)}
             {...form.register(`variants.${index}.indicativePrice`)}
@@ -341,69 +335,6 @@ function VariantRow({
           />
           Active
         </label>
-      </div>
-
-      <div className="border-t border-line/70">
-        <button
-          type="button"
-          aria-expanded={open || hasAdvancedError}
-          onClick={() => setOpen((value) => !value)}
-          className="flex w-full items-center justify-between px-4 py-2.5 text-xs font-semibold tracking-wide text-charcoal/60 uppercase hover:text-forest"
-        >
-          Plus d’options
-          <ChevronDown
-            aria-hidden="true"
-            className={cn(
-              'size-4 transition-transform',
-              (open || hasAdvancedError) && 'rotate-180',
-            )}
-          />
-        </button>
-        {(open || hasAdvancedError) && (
-          <div className="grid gap-3 px-4 pb-4 sm:grid-cols-2">
-            <FormField
-              id={`${prefix}-label`}
-              label="Libellé"
-              error={fieldErrors?.label?.message}
-              hint="Généré depuis la couleur et la taille ; modifiable."
-            >
-              <input
-                id={`${prefix}-label`}
-                className={inputClassName}
-                aria-describedby={describedBy(
-                  `${prefix}-label`,
-                  fieldErrors?.label?.message,
-                  'hint',
-                )}
-                {...form.register(`variants.${index}.label`)}
-              />
-            </FormField>
-            <FormField
-              id={`${prefix}-sku`}
-              label="Référence (facultatif)"
-              error={fieldErrors?.sku?.message}
-            >
-              <input
-                id={`${prefix}-sku`}
-                className={inputClassName}
-                {...form.register(`variants.${index}.sku`)}
-              />
-            </FormField>
-            <label className="flex items-center gap-2 text-sm sm:col-span-2">
-              <input
-                type="checkbox"
-                className="size-5 accent-forest"
-                {...form.register(`variants.${index}.priceOnRequest`, {
-                  onChange: (event: { target: { checked: boolean } }) => {
-                    if (event.target.checked)
-                      form.setValue(`variants.${index}.indicativePrice`, '', { shouldDirty: true });
-                  },
-                })}
-              />
-              Prix sur demande (pas de prix ferme, non commandable en ligne)
-            </label>
-          </div>
-        )}
       </div>
     </li>
   );

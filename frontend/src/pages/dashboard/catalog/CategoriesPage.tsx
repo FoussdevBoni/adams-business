@@ -78,20 +78,6 @@ function CategoryForm({
           {...form.register('name')}
         />
       </FormField>
-      <FormField
-        id="category-slug"
-        label="Adresse (slug)"
-        error={errors.slug?.message}
-        hint="Laisser vide pour la générer à partir du nom. La modifier change l’URL publique."
-      >
-        <input
-          id="category-slug"
-          className={inputClassName}
-          aria-invalid={errors.slug ? true : undefined}
-          aria-describedby={describedBy('category-slug', errors.slug?.message, 'hint')}
-          {...form.register('slug')}
-        />
-      </FormField>
       <FormField id="category-description" label="Description" error={errors.description?.message}>
         <textarea
           id="category-description"

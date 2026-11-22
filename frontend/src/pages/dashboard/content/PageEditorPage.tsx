@@ -45,11 +45,21 @@ function SeoForm({ page }: { page: PageDraft }) {
     ),
   );
   return (
-    <section aria-labelledby="seo-title" className={card}>
+    <details aria-labelledby="seo-title" className={`${card} group`}>
       <UnsavedChangesGuard when={isDirty && !updateSeo.isPending} />
-      <h2 id="seo-title" className="text-lg font-bold">
-        Référencement
-      </h2>
+      <summary className="flex cursor-pointer list-none items-center justify-between gap-3">
+        <span>
+          <span id="seo-title" className="block text-lg font-bold">
+            Partage et Google
+          </span>
+          <span className="block text-sm font-normal text-charcoal/60">
+            Facultatif : rempli automatiquement si vous n’y touchez pas.
+          </span>
+        </span>
+        <span aria-hidden="true" className="text-xl transition-transform group-open:rotate-45">
+          +
+        </span>
+      </summary>
       {updateSeo.isError && (
         <div role="alert" className="space-y-2 rounded-lg bg-red-50 px-4 py-3 text-sm text-red-800">
           <p>{getErrorMessage(updateSeo.error)}</p>
@@ -103,7 +113,7 @@ function SeoForm({ page }: { page: PageDraft }) {
           Enregistrer le référencement
         </button>
       </form>
-    </section>
+    </details>
   );
 }
 

@@ -16,6 +16,7 @@ import { useAdminCategories } from '../../../modules/categories/hooks/useCategor
 import { MediaPicker } from '../../../modules/media/components/MediaPicker';
 import type { MediaSummary } from '../../../modules/media/schemas/mediaSchema';
 import { VariantsEditor } from '../../../modules/products/components/VariantsEditor';
+import { completeProductValues } from '../../../modules/products/utils/productFormDefaults';
 import { StatusBadge } from '../../../modules/products/components/ProductStatusBadge';
 import { useAdminProduct, useProductMutations } from '../../../modules/products/hooks/useProducts';
 import {
@@ -143,15 +144,9 @@ function ImagesEditor({ form, initial }: { form: Form; initial: MediaSummary[] }
               ) : (
                 <span className="size-20 shrink-0 rounded-lg bg-ivory" />
               )}
-              <div className="flex-1">
-                <FormField id={`image-${field.id}-alt`} label="Texte alternatif">
-                  <input
-                    id={`image-${field.id}-alt`}
-                    className={inputClassName}
-                    {...form.register(`images.${index}.alt`)}
-                  />
-                </FormField>
-              </div>
+              <p className="flex-1 text-sm text-charcoal/60">
+                {index === 0 ? 'Photo principale' : `Photo ${String(index + 1)}`}
+              </p>
               <div className="flex gap-1">
                 <button
                   type="button"
@@ -292,12 +287,15 @@ function ProductEditor({ product }: { product: AdminProduct | null }) {
   const { create, update } = useProductMutations();
   const mutation = product ? update : create;
   const form = useForm<ProductFormValues>({
-    resolver: zodResolver(productFormSchema),
+    // Validation sur les valeurs complétées (libellés, prix sur demande, descriptions de photos).
+    resolver: (values, context, options) =>
+      zodResolver(productFormSchema)(completeProductValues(values), context, options),
     defaultValues: product ? productToForm(product) : emptyProductForm(),
   });
   const { errors, isDirty } = form.formState;
 
-  const onSubmit = form.handleSubmit((values) => {
+  const onSubmit = form.handleSubmit((raw) => {
+    const values = completeProductValues(raw);
     if (product) {
       update.mutate(
         { id: product.id, values },
@@ -364,19 +362,6 @@ function ProductEditor({ product }: { product: AdminProduct | null }) {
                 {...form.register('name')}
               />
             </FormField>
-            <FormField
-              id="product-slug"
-              label="Adresse (slug)"
-              error={errors.slug?.message}
-              hint="Vide : générée depuis le nom. Une ancienne adresse reste redirigée."
-            >
-              <input
-                id="product-slug"
-                className={inputClassName}
-                aria-describedby={describedBy('product-slug', errors.slug?.message, 'hint')}
-                {...form.register('slug')}
-              />
-            </FormField>
             <FormField id="product-category" label="Catégorie">
               <select
                 id="product-category"
@@ -425,35 +410,6 @@ function ProductEditor({ product }: { product: AdminProduct | null }) {
           <ImagesEditor form={form} initial={product?.images ?? []} />
           <VariantsEditor form={form} />
           <CharacteristicsEditor form={form} />
-          <section aria-labelledby="seo-title" className={card}>
-            <h2 id="seo-title" className="text-lg font-bold">
-              Référencement
-            </h2>
-            <FormField
-              id="product-seo-title"
-              label="Titre SEO"
-              error={errors.seoTitle?.message}
-              hint="Vide : le nom du produit est utilisé."
-            >
-              <input
-                id="product-seo-title"
-                className={inputClassName}
-                {...form.register('seoTitle')}
-              />
-            </FormField>
-            <FormField
-              id="product-seo-description"
-              label="Description SEO"
-              error={errors.seoDescription?.message}
-            >
-              <textarea
-                id="product-seo-description"
-                rows={2}
-                className={`${inputClassName} py-2`}
-                {...form.register('seoDescription')}
-              />
-            </FormField>
-          </section>
         </div>
         <div className="space-y-6 lg:sticky lg:top-20 lg:self-start">
           <section className="fixed inset-x-0 bottom-[calc(4.5rem+env(safe-area-inset-bottom))] z-30 flex gap-2 border-t border-line bg-paper/95 p-3 backdrop-blur md:bottom-0 lg:static lg:block lg:space-y-3 lg:rounded-xl lg:border lg:p-6 lg:backdrop-blur-none">

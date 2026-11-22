@@ -69,8 +69,8 @@ function MediaDetailPanel({ id, onDeleted }: { id: string; onDeleted: () => void
       >
         <FormField
           id="media-alt"
-          label="Texte alternatif"
-          hint="Décrit l’image pour l’accessibilité et le référencement."
+          label="Description de la photo (facultatif)"
+          hint="Ex. « Polo noir porté de face ». Aide les malvoyants et Google."
         >
           <input
             id="media-alt"

@@ -129,7 +129,7 @@ export const productFormSchema = z.object({
     .refine(
       (variants) =>
         new Set(variants.map((variant) => variant.label.toLowerCase())).size === variants.length,
-      'Chaque variante doit avoir un libellé distinct.',
+      'Deux variantes ont la même couleur et la même taille.',
     ),
   featured: z.boolean(),
   seoTitle: z.string().trim().max(70, '70 caractères maximum.'),
@@ -161,7 +161,9 @@ export function emptyProductForm(): ProductFormValues {
     description: '',
     characteristics: [],
     images: [],
-    variants: [{ ...emptyVariant(), label: 'Standard', priceOnRequest: true }],
+    variants: [
+      { ...emptyVariant(), unit: 'Taille unique', label: 'Taille unique', priceOnRequest: true },
+    ],
     featured: false,
     seoTitle: '',
     seoDescription: '',
