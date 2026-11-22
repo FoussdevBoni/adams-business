@@ -1,0 +1,44 @@
+# Blueprint Render : API Express d'Adam's Business (sans Docker).
+# Les secrets (sync: false) se saisissent dans le tableau de bord Render, jamais dans le dépôt.
+services:
+  - type: web
+    name: adams-business-api
+    runtime: node
+    plan: free
+    region: frankfurt
+    buildCommand: corepack enable && pnpm install --frozen-lockfile && pnpm --filter @adams-business/backend build
+    startCommand: node backend/dist/server.js
+    healthCheckPath: /api/v1/health
+    autoDeploy: true
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: NODE_VERSION
+        value: 22.19.0
+      - key: TRUST_PROXY
+        value: '1'
+      - key: COOKIE_SECURE
+        value: 'true'
+      # Frontend (Firebase) et API (Render) sur des domaines différents.
+      - key: SESSION_COOKIE_SAMESITE
+        value: none
+      - key: CORS_ORIGINS
+        value: https://adams-business.web.app,https://adams-business.firebaseapp.com
+      - key: APP_PUBLIC_URL
+        value: https://adams-business.web.app
+      - key: LOG_LEVEL
+        value: info
+      - key: CLOUDINARY_FOLDER
+        value: adams-business
+      - key: MONGODB_URI
+        sync: false
+      - key: CLOUDINARY_CLOUD_NAME
+        sync: false
+      - key: CLOUDINARY_API_KEY
+        sync: false
+      - key: CLOUDINARY_API_SECRET
+        sync: false
+      - key: RESEND_API_KEY
+        sync: false
+      - key: RESEND_FROM
+        sync: false
