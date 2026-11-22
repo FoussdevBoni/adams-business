@@ -56,7 +56,9 @@ export function PartnersPage() {
     <div className="mx-auto max-w-6xl space-y-6">
       <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
         <div>
-          <h1 className="text-2xl font-extrabold text-forest">Partenaires</h1>
+          <h1 className="font-display text-3xl font-bold tracking-[-0.03em] sm:text-4xl">
+            Partenaires
+          </h1>
           <p className="mt-1 text-sm text-charcoal/70">
             Annuaire privé utilisé pour les mises en relation.
           </p>
@@ -66,7 +68,7 @@ export function PartnersPage() {
           Nouveau partenaire
         </Link>
       </div>
-      <div className="space-y-3 rounded-xl border border-line bg-paper p-4">
+      <div className="space-y-3 studio-card p-4">
         <form
           role="search"
           onSubmit={submitSearch}
@@ -154,7 +156,7 @@ export function PartnersPage() {
         />
       ) : (
         <>
-          <ul className="divide-y divide-forest/10 rounded-xl border border-line bg-paper">
+          <ul className="divide-y divide-forest/10 studio-card">
             {partners.data.items.map((partner) => (
               <li key={partner.id}>
                 <Link to={partner.id} className="flex items-center gap-3 p-4 hover:bg-ivory">

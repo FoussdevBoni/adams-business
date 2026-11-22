@@ -17,10 +17,7 @@ export function AccompanimentDetailPage() {
       {(request) => (
         <>
           <ContactCard customer={request.customer} locationLabel="Lieu du projet" />
-          <section
-            aria-labelledby="project-title"
-            className="space-y-4 rounded-xl border border-line bg-paper p-5"
-          >
+          <section aria-labelledby="project-title" className="space-y-4 studio-card p-5">
             <h2 id="project-title" className="text-lg font-bold">
               Projet
             </h2>

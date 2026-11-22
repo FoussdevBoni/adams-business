@@ -13,7 +13,7 @@ export function PagesListPage() {
   return (
     <div className="mx-auto max-w-5xl space-y-6">
       <div>
-        <h1 className="text-2xl font-extrabold text-forest">Pages</h1>
+        <h1 className="font-display text-3xl font-bold tracking-[-0.03em] sm:text-4xl">Pages</h1>
         <p className="mt-1 text-sm text-charcoal/70">
           Contenus du site, édités en brouillon puis publiés explicitement.
         </p>
@@ -25,7 +25,7 @@ export function PagesListPage() {
       ) : pages.data.length === 0 ? (
         <EmptyState icon={LayoutTemplate} title="Aucune page" />
       ) : (
-        <ul className="divide-y divide-forest/10 rounded-xl border border-line bg-paper">
+        <ul className="divide-y divide-forest/10 studio-card">
           {pages.data.map((page) => (
             <li key={page.id}>
               <Link to={page.id} className="flex items-center gap-4 p-4 hover:bg-ivory">

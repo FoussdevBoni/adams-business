@@ -58,7 +58,7 @@ function CategoryForm({
     <form
       onSubmit={(event) => void onSubmit(event)}
       noValidate
-      className="space-y-4 rounded-xl border border-line bg-paper p-5"
+      className="space-y-4 studio-card p-5"
     >
       <UnsavedChangesGuard when={isDirty && !mutation.isPending} />
       <h2 className="text-lg font-bold">
@@ -151,7 +151,9 @@ export function CategoriesPage() {
     <div className="mx-auto max-w-5xl space-y-6">
       <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
         <div>
-          <h1 className="text-2xl font-extrabold text-forest">Catégories</h1>
+          <h1 className="font-display text-3xl font-bold tracking-[-0.03em] sm:text-4xl">
+            Catégories
+          </h1>
           <p className="mt-1 text-sm text-charcoal/70">
             Organisation du catalogue et ordre d’affichage public.
           </p>
@@ -194,7 +196,7 @@ export function CategoriesPage() {
           description="Créez une catégorie pour organiser le catalogue."
         />
       ) : (
-        <ol className="divide-y divide-forest/10 rounded-xl border border-line bg-paper">
+        <ol className="divide-y divide-forest/10 studio-card">
           {categories.data.map((category, index) => (
             <li key={category.id} className="flex flex-wrap items-center gap-3 p-4">
               <div className="min-w-0 flex-1">

@@ -198,7 +198,7 @@ function VariantRow({
   return (
     <li
       className={cn(
-        'rounded-lg border bg-paper transition-colors',
+        'rounded-2xl border bg-white transition-colors',
         variant.isActive ? 'border-line' : 'border-dashed border-line bg-ivory/60',
         fieldErrors && 'border-red-300',
       )}
@@ -424,10 +424,7 @@ export function VariantsEditor({ form }: { form: Form }) {
   const bulkValid = /^\d{1,10}$/.test(bulkPrice.trim());
 
   return (
-    <section
-      aria-labelledby="variants-title"
-      className="space-y-4 rounded-xl border border-line bg-paper p-5 sm:p-6"
-    >
+    <section aria-labelledby="variants-title" className="studio-card space-y-4 p-5 sm:p-7">
       <div className="flex flex-wrap items-start justify-between gap-3">
         <div>
           <h2 id="variants-title" className="text-lg font-bold">

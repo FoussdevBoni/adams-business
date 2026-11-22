@@ -13,11 +13,11 @@ import { LogoutButton } from './LogoutButton';
 
 const tabClassName = (isActive: boolean) =>
   cn(
-    'flex min-h-16 flex-col items-center justify-center gap-1 text-xs font-medium',
-    isActive ? 'text-forest' : 'text-charcoal/60',
+    'relative flex h-14 flex-col items-center justify-center gap-1 rounded-2xl text-[0.65rem] font-semibold tracking-wide transition-colors duration-200',
+    isActive ? 'bg-white/10 text-ivory' : 'text-ivory/50 hover:text-ivory',
   );
 
-/** Barre de navigation inférieure mobile : Accueil, Catégories, Produits, Alertes, Plus. */
+/** Barre mobile flottante : Accueil, Catégories, Produits, Alertes, Plus. */
 export function DashboardBottomNav({ role }: { role: AdminRole }) {
   const { pathname } = useLocation();
   const activeItem = findActiveNavItem(pathname);
@@ -32,9 +32,9 @@ export function DashboardBottomNav({ role }: { role: AdminRole }) {
     <>
       <nav
         aria-label="Navigation mobile"
-        className="fixed inset-x-0 bottom-0 z-40 border-t border-line bg-paper pb-[env(safe-area-inset-bottom)] md:hidden"
+        className="fixed inset-x-3 bottom-[calc(0.75rem+env(safe-area-inset-bottom))] z-40 rounded-[1.4rem] bg-[#141412]/95 p-1.5 shadow-[0_18px_40px_-12px_rgb(0_0_0/0.55)] ring-1 ring-white/10 backdrop-blur-xl md:hidden"
       >
-        <ul className="grid grid-cols-5">
+        <ul className="grid grid-cols-5 gap-1">
           {dashboardMobileTabs.map((tab) => {
             const isActive = activeTab === tab.id;
             return (
@@ -45,10 +45,20 @@ export function DashboardBottomNav({ role }: { role: AdminRole }) {
                   className={tabClassName(isActive)}
                 >
                   <span className="relative">
-                    <tab.icon aria-hidden="true" className="size-5" />
+                    <tab.icon
+                      aria-hidden="true"
+                      className="size-5"
+                      strokeWidth={isActive ? 2.1 : 1.7}
+                    />
                     {tab.id === 'alerts' && <UnreadBadge className="absolute -top-2 -right-3" />}
                   </span>
                   {tab.label}
+                  {isActive && (
+                    <span
+                      aria-hidden="true"
+                      className="absolute bottom-1 h-0.5 w-4 rounded-full bg-sprout"
+                    />
+                  )}
                 </Link>
               </li>
             );
@@ -70,25 +80,21 @@ export function DashboardBottomNav({ role }: { role: AdminRole }) {
       <dialog
         ref={dialogRef}
         aria-labelledby={titleId}
-        className="mx-0 mt-auto mb-0 max-h-[80dvh] w-full max-w-none rounded-t-2xl bg-paper p-0 text-charcoal backdrop:bg-charcoal/40 md:hidden"
+        className="studio-sheet mx-0 mt-auto mb-0 max-h-[80dvh] w-full max-w-none rounded-t-[1.75rem] bg-[#faf8f4] p-0 text-charcoal backdrop:bg-black/50 backdrop:backdrop-blur-sm md:hidden"
         onClick={(event) => {
           if (event.target === event.currentTarget) closeMore();
         }}
       >
-        <div className="flex items-center justify-between border-b border-line px-4 py-3">
-          <h2 id={titleId} className="text-base font-bold">
+        <div className="mx-auto mt-2.5 h-1 w-10 rounded-full bg-black/15" aria-hidden="true" />
+        <div className="flex items-center justify-between px-5 pt-3 pb-2">
+          <h2 id={titleId} className="font-display text-lg font-bold">
             Plus de modules
           </h2>
-          <button
-            type="button"
-            onClick={closeMore}
-            aria-label="Fermer"
-            className="inline-flex size-11 items-center justify-center rounded-lg hover:bg-forest/5"
-          >
+          <button type="button" onClick={closeMore} aria-label="Fermer" className="studio-icon-btn">
             <X aria-hidden="true" className="size-5" />
           </button>
         </div>
-        <ul className="grid grid-cols-3 gap-2 p-4">
+        <ul className="grid grid-cols-3 gap-2.5 px-5 py-3">
           {getMoreItems(role).map((item) => {
             const isActive = activeItem?.id === item.id;
             return (
@@ -98,19 +104,21 @@ export function DashboardBottomNav({ role }: { role: AdminRole }) {
                   onClick={closeMore}
                   aria-current={isActive ? 'page' : undefined}
                   className={cn(
-                    'flex min-h-20 flex-col items-center justify-center gap-2 rounded-xl px-2 text-center text-xs font-medium',
-                    isActive ? 'bg-forest text-ivory' : 'bg-ivory text-charcoal hover:bg-sand/50',
+                    'flex aspect-square flex-col items-center justify-center gap-2.5 rounded-2xl px-2 text-center text-xs font-semibold transition-colors',
+                    isActive
+                      ? 'bg-[#141412] text-ivory'
+                      : 'bg-white text-charcoal shadow-[0_1px_2px_rgb(0_0_0/0.06)] ring-1 ring-black/5',
                   )}
                 >
-                  <item.icon aria-hidden="true" className="size-5" />
+                  <item.icon aria-hidden="true" className="size-5" strokeWidth={1.7} />
                   {item.label}
                 </Link>
               </li>
             );
           })}
         </ul>
-        <div className="border-t border-line px-4 pt-2 pb-[calc(0.5rem+env(safe-area-inset-bottom))]">
-          <LogoutButton className="w-full justify-start" />
+        <div className="px-5 pt-2 pb-[calc(1rem+env(safe-area-inset-bottom))]">
+          <LogoutButton className="w-full justify-start rounded-2xl bg-white ring-1 ring-black/5" />
         </div>
       </dialog>
     </>

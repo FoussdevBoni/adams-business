@@ -53,7 +53,9 @@ export function NotificationsPage() {
     <div className="mx-auto max-w-3xl space-y-6">
       <div className="flex flex-wrap items-end justify-between gap-3">
         <div>
-          <h1 className="text-2xl font-extrabold text-forest">Notifications</h1>
+          <h1 className="font-display text-3xl font-bold tracking-[-0.03em] sm:text-4xl">
+            Notifications
+          </h1>
           <p className="mt-1 text-sm text-charcoal/70">
             {unreadCount === 0
               ? 'Tout est lu.'
@@ -109,7 +111,7 @@ export function NotificationsPage() {
         />
       ) : (
         <>
-          <ul className="divide-y divide-forest/10 overflow-hidden rounded-xl border border-line bg-paper">
+          <ul className="divide-y divide-forest/10 overflow-hidden studio-card">
             {list.data.items.map((notification) => {
               const unread = notification.readAt === null;
               return (

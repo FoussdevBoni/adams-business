@@ -22,7 +22,7 @@ import {
   partnerToForm,
 } from '../../../modules/partners/schemas/partnerSchema';
 
-const card = 'space-y-4 rounded-xl border border-line bg-paper p-5 sm:p-6';
+const card = 'space-y-4 studio-card p-5 sm:p-6';
 
 function PartnerEditor({ partner }: { partner: Partner | null }) {
   const navigate = useNavigate();
@@ -87,7 +87,7 @@ function PartnerEditor({ partner }: { partner: Partner | null }) {
         <ArrowLeft aria-hidden="true" className="size-4" />
         Partenaires
       </Link>
-      <h1 className="text-2xl font-extrabold text-forest">
+      <h1 className="font-display text-3xl font-bold tracking-[-0.03em] sm:text-4xl">
         {partner ? partner.name : 'Nouveau partenaire'}
       </h1>
       {mutation.isError && (

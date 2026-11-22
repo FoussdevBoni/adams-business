@@ -39,10 +39,7 @@ export function ContactCard({
   locationLabel?: string;
 }) {
   return (
-    <section
-      aria-labelledby="contact-title"
-      className="rounded-xl border border-line bg-paper p-5"
-    >
+    <section aria-labelledby="contact-title" className="studio-card p-5">
       <h2 id="contact-title" className="text-lg font-bold">
         Demandeur
       </h2>

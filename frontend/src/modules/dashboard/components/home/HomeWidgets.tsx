@@ -22,7 +22,7 @@ import { RequestStatusBadge } from '../RequestStatusBadge';
 import { listPath } from './homeFormat';
 import { RequestTrendChart } from './RequestTrendChart';
 
-const card = 'rounded-xl border border-line bg-paper p-5';
+const card = 'studio-card p-5';
 
 // ---------- Indicateurs clés ----------
 
@@ -59,10 +59,7 @@ export function KpiGrid({ overview }: { overview: Overview }) {
     <ul className="grid grid-cols-2 gap-3 lg:grid-cols-4">
       {kpis.map((kpi) => (
         <li key={kpi.label}>
-          <Link
-            to={kpi.to}
-            className="flex h-full flex-col rounded-xl border border-line bg-paper p-4 hover:border-forest/30"
-          >
+          <Link to={kpi.to} className="flex h-full flex-col studio-card p-4 hover:border-forest/30">
             <span className="text-sm text-charcoal/70">{kpi.label}</span>
             <span
               className={`mt-1 font-display text-3xl font-extrabold ${kpi.alert ? 'text-red-800' : 'text-forest'}`}

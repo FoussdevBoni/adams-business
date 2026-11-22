@@ -17,7 +17,7 @@ import {
 import { formatDateTime } from '../../../core/utils/formatDate';
 import { useAssignableAdmins } from '../hooks/useRequests';
 
-const card = 'space-y-4 rounded-xl border border-line bg-paper p-5';
+const card = 'space-y-4 studio-card p-5';
 
 interface ProcessingProps {
   type?: TrackedType;

@@ -501,10 +501,7 @@ export function ContactInfoSection({ data }: { data: SectionDataMap['contactInfo
       <SectionHeading title={data.title || 'Coordonnées'} />
       <dl className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {items.map((item) => (
-          <div
-            key={item.label}
-            className="flex gap-3 border border-line bg-paper p-5 shadow-sm"
-          >
+          <div key={item.label} className="flex gap-3 border border-line bg-paper p-5 shadow-sm">
             <item.icon aria-hidden="true" className="size-5 shrink-0 text-leaf" />
             <div>
               <dt className="text-sm font-semibold">{item.label}</dt>

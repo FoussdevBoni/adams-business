@@ -8,10 +8,7 @@ export function MessageDetailPage() {
     <RequestDetailShell type="contact" id={id} api={contactMessageApi}>
       {(message) => (
         <>
-          <section
-            aria-labelledby="sender-title"
-            className="rounded-xl border border-line bg-paper p-5"
-          >
+          <section aria-labelledby="sender-title" className="studio-card p-5">
             <h2 id="sender-title" className="text-lg font-bold">
               Expéditeur
             </h2>
@@ -52,10 +49,7 @@ export function MessageDetailPage() {
               </div>
             </dl>
           </section>
-          <section
-            aria-labelledby="message-title"
-            className="space-y-3 rounded-xl border border-line bg-paper p-5"
-          >
+          <section aria-labelledby="message-title" className="space-y-3 studio-card p-5">
             <h2 id="message-title" className="text-lg font-bold">
               {message.subject}
             </h2>

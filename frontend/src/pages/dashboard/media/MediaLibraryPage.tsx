@@ -160,7 +160,9 @@ export function MediaLibraryPage() {
     <div className="mx-auto max-w-7xl space-y-6">
       <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
         <div>
-          <h1 className="text-2xl font-extrabold text-forest">Médiathèque</h1>
+          <h1 className="font-display text-3xl font-bold tracking-[-0.03em] sm:text-4xl">
+            Médiathèque
+          </h1>
           <p className="mt-1 text-sm text-charcoal/70">
             Images utilisées par le catalogue et les contenus du site.
           </p>
@@ -233,7 +235,7 @@ export function MediaLibraryPage() {
         </div>
         <aside
           aria-label="Détail du média"
-          className="rounded-xl border border-line bg-paper p-5 lg:sticky lg:top-20 lg:self-start"
+          className="studio-card p-5 lg:sticky lg:top-20 lg:self-start"
         >
           {selectedId ? (
             <MediaDetailPanel

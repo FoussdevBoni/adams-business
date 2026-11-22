@@ -1,5 +1,6 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { render, screen, within } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { createMemoryRouter, RouterProvider } from 'react-router';
 import { describe, expect, it } from 'vitest';
 import { CurrentSessionContext } from '../../src/core/auth/currentSessionContext';
@@ -66,12 +67,15 @@ describe('DashboardLayout', () => {
     );
   });
 
-  it('affiche l’utilisateur connecté et masque l’administration aux admins', () => {
+  it('affiche l’utilisateur connecté et masque l’administration aux admins', async () => {
     renderDashboardAt('/dashboard', 'admin');
     const sidebar = screen.getByRole('navigation', { name: 'Navigation du dashboard' });
 
     expect(screen.getByText('Awa Traoré')).toBeInTheDocument();
     expect(within(sidebar).queryByRole('link', { name: 'Administrateurs' })).toBeNull();
-    expect(screen.getAllByRole('button', { name: /Se déconnecter/ }).length).toBeGreaterThan(0);
+    // La déconnexion est proposée dans le menu du compte.
+    await userEvent.click(screen.getByRole('button', { name: 'Compte de Awa Traoré' }));
+    expect(screen.getByRole('button', { name: /Se déconnecter/ })).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: /Voir la boutique/ })).toBeInTheDocument();
   });
 });

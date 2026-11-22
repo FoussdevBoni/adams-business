@@ -138,10 +138,7 @@ function AssociationsPanel({ request }: { request: MatchingDetail }) {
   const error = update.error ?? remove.error;
 
   return (
-    <section
-      aria-labelledby="associations-title"
-      className="space-y-4 rounded-xl border border-line bg-paper p-5"
-    >
+    <section aria-labelledby="associations-title" className="space-y-4 studio-card p-5">
       <h2 id="associations-title" className="text-lg font-bold">
         Partenaires associés
       </h2>
@@ -251,10 +248,7 @@ export function MatchingDetailPage() {
       {(request) => (
         <>
           <ContactCard customer={request.customer} />
-          <section
-            aria-labelledby="need-title"
-            className="space-y-2 rounded-xl border border-line bg-paper p-5"
-          >
+          <section aria-labelledby="need-title" className="space-y-2 studio-card p-5">
             <h2 id="need-title" className="text-lg font-bold">
               Besoin exprimé
             </h2>

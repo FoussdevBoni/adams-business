@@ -26,7 +26,7 @@ import {
   productToForm,
 } from '../../../modules/products/schemas/productSchema';
 
-const card = 'space-y-4 rounded-xl border border-line bg-paper p-5 sm:p-6';
+const card = 'studio-card space-y-4 p-5 sm:p-7';
 type Form = UseFormReturn<ProductFormValues>;
 
 function CharacteristicsEditor({ form }: { form: Form }) {

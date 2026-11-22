@@ -115,6 +115,7 @@ describe('écrans du dashboard (non-régression des modules partagés)', () => {
   });
 
   it('affiche la liste des produits avec sa pagination', async () => {
+    window.localStorage.setItem('adams-studio.products-view', 'list');
     const router = renderAt('/dashboard/products');
     const table = await screen.findByRole(
       'table',

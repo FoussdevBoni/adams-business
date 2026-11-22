@@ -5,9 +5,11 @@ import { cn } from '../../core/utils/cn';
 interface LogoutButtonProps {
   className?: string;
   labelClassName?: string;
+  /** `studio` : style fourni par l'appelant (sidebar sombre). */
+  tone?: 'light' | 'studio';
 }
 
-export function LogoutButton({ className, labelClassName }: LogoutButtonProps) {
+export function LogoutButton({ className, labelClassName, tone = 'light' }: LogoutButtonProps) {
   const logout = useLogout();
   return (
     <button
@@ -16,7 +18,9 @@ export function LogoutButton({ className, labelClassName }: LogoutButtonProps) {
       disabled={logout.isPending}
       onClick={() => logout.mutate()}
       className={cn(
-        'flex min-h-11 items-center justify-center gap-3 rounded-lg px-3 text-sm font-medium text-charcoal/75 hover:bg-forest/5 hover:text-forest disabled:opacity-60',
+        tone === 'light' &&
+          'flex min-h-11 items-center justify-center gap-3 rounded-lg px-3 text-sm font-medium text-charcoal/75 hover:bg-forest/5 hover:text-forest',
+        'disabled:opacity-60',
         className,
       )}
     >

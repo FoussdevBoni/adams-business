@@ -62,7 +62,9 @@ export function AdminsListPage() {
     <div className="mx-auto max-w-6xl space-y-6">
       <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
         <div>
-          <h1 className="text-2xl font-extrabold text-forest">Administrateurs</h1>
+          <h1 className="font-display text-3xl font-bold tracking-[-0.03em] sm:text-4xl">
+            Administrateurs
+          </h1>
           <p className="mt-1 text-sm text-charcoal/70">Comptes ayant accès au tableau de bord.</p>
         </div>
         <Link to="nouveau" className={buttonClassName('primary')}>
@@ -71,7 +73,7 @@ export function AdminsListPage() {
         </Link>
       </div>
 
-      <div className="flex flex-col gap-3 rounded-xl border border-line bg-paper p-4 lg:flex-row">
+      <div className="flex flex-col gap-3 studio-card p-4 lg:flex-row">
         <form role="search" onSubmit={submitSearch} className="flex flex-1 gap-2">
           <label htmlFor="admin-search" className="sr-only">
             Rechercher par nom ou email
@@ -141,10 +143,7 @@ export function AdminsListPage() {
           <ul className="space-y-3 md:hidden">
             {admins.data.items.map((admin) => (
               <li key={admin.id}>
-                <Link
-                  to={admin.id}
-                  className="flex items-center gap-3 rounded-xl border border-line bg-paper p-4"
-                >
+                <Link to={admin.id} className="flex items-center gap-3 studio-card p-4">
                   <div className="min-w-0 flex-1">
                     <p className="truncate font-semibold">
                       {admin.fullName}
@@ -165,7 +164,7 @@ export function AdminsListPage() {
           </ul>
 
           {/* Tablette et desktop : tableau */}
-          <div className="hidden overflow-x-auto rounded-xl border border-line bg-paper md:block">
+          <div className="hidden overflow-x-auto studio-card md:block">
             <table className="w-full text-left text-sm">
               <caption className="sr-only">Liste des administrateurs</caption>
               <thead className="border-b border-line bg-ivory text-xs tracking-wide text-charcoal/60 uppercase">

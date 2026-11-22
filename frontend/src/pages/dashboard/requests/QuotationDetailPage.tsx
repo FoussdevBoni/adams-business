@@ -14,10 +14,7 @@ export function QuotationDetailPage() {
       {(quotation) => (
         <>
           <ContactCard customer={quotation.customer} />
-          <section
-            aria-labelledby="items-title"
-            className="rounded-xl border border-line bg-paper p-5"
-          >
+          <section aria-labelledby="items-title" className="studio-card p-5">
             <h2 id="items-title" className="text-lg font-bold">
               Produits demandés
             </h2>
@@ -79,7 +76,7 @@ export function QuotationDetailPage() {
             </p>
           </section>
           {quotation.message && (
-            <section className="rounded-xl border border-line bg-paper p-5">
+            <section className="studio-card p-5">
               <h2 className="text-lg font-bold">Message du demandeur</h2>
               <p className="mt-2 whitespace-pre-line text-sm">{quotation.message}</p>
             </section>

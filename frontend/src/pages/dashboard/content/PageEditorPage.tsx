@@ -23,7 +23,7 @@ import {
 import { type SectionType, sectionTypeLabels } from '../../../modules/pages/schemas/sectionSchema';
 import { StatusBadge } from '../../../modules/products/components/ProductStatusBadge';
 
-const card = 'space-y-4 rounded-xl border border-line bg-paper p-5 sm:p-6';
+const card = 'space-y-4 studio-card p-5 sm:p-6';
 const singletonTypes = new Set<SectionType>(['hero', 'contactInfo', 'siteIdentity']);
 
 function sectionSummary(section: DraftSection): string {
@@ -418,7 +418,9 @@ export function PageEditorPage() {
         Pages
       </Link>
       <div>
-        <h1 className="text-2xl font-extrabold text-forest">{page.data.title}</h1>
+        <h1 className="font-display text-3xl font-bold tracking-[-0.03em] sm:text-4xl">
+          {page.data.title}
+        </h1>
         <p className="mt-1 text-sm text-charcoal/60">
           {page.data.path ?? 'Informations communes à tout le site'}
         </p>

@@ -1,0 +1,349 @@
+/* ---------- Administration « Studio » ---------- */
+
+@layer components {
+  .studio-sidebar {
+    background:
+      radial-gradient(120% 60% at 0% 0%, rgb(201 164 124 / 0.12), transparent 60%), #141412;
+    color: #f5f2ec;
+    border-right: 1px solid rgb(255 255 255 / 0.06);
+    transition: width 0.35s var(--ease-out-soft);
+  }
+  .studio-monogram {
+    display: inline-grid;
+    place-items: center;
+    width: 2.4rem;
+    height: 2.4rem;
+    flex: none;
+    border-radius: 0.85rem;
+    background: linear-gradient(145deg, #d9b98f, #a77b52);
+    color: #141412;
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 1.05rem;
+    box-shadow:
+      inset 0 1px 0 rgb(255 255 255 / 0.35),
+      0 6px 16px -6px rgb(167 123 82 / 0.6);
+  }
+  .studio-nav-link {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    min-height: 2.75rem;
+    padding-inline: 0.85rem;
+    border-radius: 0.85rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: rgb(245 242 236 / 0.62);
+    transition:
+      background-color 0.2s ease,
+      color 0.2s ease;
+  }
+  .studio-nav-link:hover {
+    background: rgb(255 255 255 / 0.05);
+    color: #f5f2ec;
+  }
+  .studio-nav-link[aria-current='page'] {
+    background: rgb(255 255 255 / 0.08);
+    color: #fff;
+    box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.06);
+  }
+  .studio-nav-link[aria-current='page']::before {
+    content: '';
+    position: absolute;
+    left: -0.75rem;
+    top: 0.65rem;
+    bottom: 0.65rem;
+    width: 3px;
+    border-radius: 0 3px 3px 0;
+    background: #c9a47c;
+  }
+  .studio-avatar {
+    display: inline-grid;
+    place-items: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    flex: none;
+    border-radius: 999px;
+    background: #2a2925;
+    color: #e9dcc7;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.1);
+  }
+  .studio-avatar--light {
+    background: #141412;
+  }
+  .studio-icon-btn {
+    display: inline-grid;
+    place-items: center;
+    width: 2.6rem;
+    height: 2.6rem;
+    border-radius: 999px;
+    background: #fff;
+    color: #1f1e1b;
+    box-shadow:
+      0 1px 2px rgb(0 0 0 / 0.06),
+      inset 0 0 0 1px rgb(0 0 0 / 0.05);
+    transition: transform 0.15s ease;
+  }
+  .studio-icon-btn:active {
+    transform: scale(0.94);
+  }
+  .studio-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    min-height: 2.6rem;
+    padding-inline: 1.1rem;
+    border-radius: 999px;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    white-space: nowrap;
+    transition:
+      transform 0.15s ease,
+      background-color 0.2s ease,
+      box-shadow 0.2s ease;
+  }
+  .studio-btn:active {
+    transform: scale(0.97);
+  }
+  .studio-btn--dark {
+    background: #141412;
+    color: #f5f2ec;
+    box-shadow: 0 8px 20px -10px rgb(0 0 0 / 0.6);
+  }
+  .studio-btn--dark:hover {
+    background: #2b2a26;
+  }
+  .studio-btn--light {
+    background: #fff;
+    color: #141412;
+    box-shadow: inset 0 0 0 1px rgb(0 0 0 / 0.08);
+  }
+  .studio-btn--light:hover {
+    background: #f7f4ee;
+  }
+  .studio-btn--gold {
+    background: linear-gradient(145deg, #dcbd93, #b0835a);
+    color: #141412;
+    box-shadow: 0 10px 24px -12px rgb(167 123 82 / 0.9);
+  }
+  .studio-btn--glass {
+    background: rgb(255 255 255 / 0.12);
+    color: #fff;
+    box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.2);
+    backdrop-filter: blur(8px);
+  }
+  .studio-btn--glass:hover {
+    background: rgb(255 255 255 / 0.2);
+  }
+  .studio-card {
+    position: relative;
+    border-radius: 1.5rem;
+    background: #fff;
+    box-shadow:
+      0 1px 2px rgb(24 24 22 / 0.04),
+      0 12px 32px -18px rgb(24 24 22 / 0.18),
+      inset 0 0 0 1px rgb(24 24 22 / 0.05);
+  }
+  .studio-card--hover {
+    transition:
+      transform 0.35s var(--ease-out-soft),
+      box-shadow 0.35s var(--ease-out-soft);
+  }
+  .studio-card--hover:hover {
+    transform: translateY(-3px);
+    box-shadow:
+      0 2px 4px rgb(24 24 22 / 0.05),
+      0 24px 48px -20px rgb(24 24 22 / 0.28),
+      inset 0 0 0 1px rgb(24 24 22 / 0.06);
+  }
+  .studio-label {
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #8a8478;
+  }
+  .studio-number {
+    font-family: var(--font-display);
+    font-weight: 700;
+    letter-spacing: -0.04em;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+  }
+  .studio-page > * {
+    animation: studio-enter 0.55s var(--ease-out-soft) both;
+  }
+  .studio-stagger > * {
+    animation: studio-enter 0.6s var(--ease-out-soft) both;
+  }
+  .studio-stagger > :nth-child(2) {
+    animation-delay: 0.05s;
+  }
+  .studio-stagger > :nth-child(3) {
+    animation-delay: 0.1s;
+  }
+  .studio-stagger > :nth-child(4) {
+    animation-delay: 0.15s;
+  }
+  .studio-stagger > :nth-child(5) {
+    animation-delay: 0.2s;
+  }
+  .studio-stagger > :nth-child(6) {
+    animation-delay: 0.25s;
+  }
+  .studio-stagger > :nth-child(n + 7) {
+    animation-delay: 0.3s;
+  }
+  .studio-sheet[open] {
+    animation: studio-sheet 0.4s var(--ease-out-soft);
+  }
+  .studio-segment {
+    display: inline-flex;
+    gap: 0.25rem;
+    padding: 0.25rem;
+    border-radius: 999px;
+    background: #e9e4da;
+    overflow-x: auto;
+    scrollbar-width: none;
+    max-width: 100%;
+  }
+  .studio-segment::-webkit-scrollbar {
+    display: none;
+  }
+  .studio-segment button {
+    flex: none;
+    min-height: 2.25rem;
+    padding-inline: 0.95rem;
+    border-radius: 999px;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: #6c675e;
+    transition:
+      background-color 0.2s ease,
+      color 0.2s ease,
+      box-shadow 0.2s ease;
+  }
+  .studio-segment button[aria-pressed='true'] {
+    background: #fff;
+    color: #141412;
+    box-shadow: 0 1px 3px rgb(0 0 0 / 0.1);
+  }
+  .studio-segment .count {
+    margin-left: 0.35rem;
+    font-variant-numeric: tabular-nums;
+    color: #a39d92;
+  }
+  .studio-bar {
+    height: 0.5rem;
+    border-radius: 999px;
+    background: #efeae2;
+    overflow: hidden;
+  }
+  .studio-bar > span {
+    display: block;
+    height: 100%;
+    border-radius: inherit;
+    background: linear-gradient(90deg, #141412, #6b6156);
+    transform-origin: left;
+    animation: studio-grow 1s var(--ease-out-soft) both 0.2s;
+  }
+  .studio-hero {
+    position: relative;
+    overflow: hidden;
+    border-radius: 1.75rem;
+    background: #141412;
+    color: #f5f2ec;
+    isolation: isolate;
+  }
+  .studio-hero-img {
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 70% 20%;
+    animation: shop-hero-zoom 2.2s var(--ease-out-soft) both;
+  }
+  .studio-hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background:
+      linear-gradient(100deg, #141412 30%, rgb(20 20 18 / 0.75) 55%, rgb(20 20 18 / 0.1) 100%),
+      radial-gradient(80% 120% at 0% 100%, rgb(201 164 124 / 0.25), transparent 60%);
+  }
+  @media (max-width: 767px) {
+    .studio-hero::after {
+      background: linear-gradient(180deg, rgb(20 20 18 / 0.35), #141412 70%);
+    }
+  }
+}
+
+@keyframes studio-enter {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes studio-grow {
+  from {
+    transform: scaleX(0);
+  }
+}
+@keyframes studio-sheet {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: none;
+  }
+}
+
+@layer components {
+  .studio-scroll {
+    scrollbar-width: thin;
+    scrollbar-color: transparent transparent;
+    transition: scrollbar-color 0.3s ease;
+  }
+  .studio-scroll:hover {
+    scrollbar-color: rgb(255 255 255 / 0.16) transparent;
+  }
+  .studio-scroll::-webkit-scrollbar {
+    width: 6px;
+  }
+  .studio-scroll::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .studio-scroll::-webkit-scrollbar-thumb {
+    border-radius: 999px;
+    background: transparent;
+  }
+  .studio-scroll:hover::-webkit-scrollbar-thumb {
+    background: rgb(255 255 255 / 0.16);
+  }
+  .studio-popover {
+    transform-origin: bottom left;
+    animation: studio-pop 0.22s var(--ease-out-soft);
+  }
+}
+@keyframes studio-pop {
+  from {
+    opacity: 0;
+    transform: translateY(6px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}

@@ -20,7 +20,7 @@ import {
   serviceToForm,
 } from '../../../modules/services/schemas/serviceSchema';
 
-const card = 'space-y-4 rounded-xl border border-line bg-paper p-5 sm:p-6';
+const card = 'space-y-4 studio-card p-5 sm:p-6';
 
 function ServiceEditor({ service }: { service: AdminService | null }) {
   const navigate = useNavigate();
@@ -64,7 +64,7 @@ function ServiceEditor({ service }: { service: AdminService | null }) {
         Services
       </Link>
       <div className="flex flex-wrap items-center gap-3">
-        <h1 className="text-2xl font-extrabold text-forest">
+        <h1 className="font-display text-3xl font-bold tracking-[-0.03em] sm:text-4xl">
           {service ? service.title : 'Nouveau service'}
         </h1>
         {service && <StatusBadge status={service.status} />}

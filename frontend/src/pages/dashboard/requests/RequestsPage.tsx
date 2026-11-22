@@ -65,7 +65,7 @@ export function RequestsPage() {
   return (
     <div className="mx-auto max-w-6xl space-y-6">
       <div>
-        <h1 className="text-2xl font-extrabold text-forest">Demandes</h1>
+        <h1 className="font-display text-3xl font-bold tracking-[-0.03em] sm:text-4xl">Demandes</h1>
         <p className="mt-1 text-sm text-charcoal/70">
           Devis, accompagnement et mise en relation reçus depuis le site.
         </p>
@@ -88,7 +88,7 @@ export function RequestsPage() {
         ))}
       </div>
 
-      <div className="flex flex-col gap-3 rounded-xl border border-line bg-paper p-4 lg:flex-row">
+      <div className="flex flex-col gap-3 studio-card p-4 lg:flex-row">
         <form role="search" onSubmit={submitSearch} className="flex flex-1 gap-2">
           <label htmlFor="requests-search" className="sr-only">
             Rechercher par référence, nom ou téléphone
@@ -178,7 +178,7 @@ export function RequestsPage() {
               <li key={`${item.type}-${item.id}`}>
                 <Link
                   to={requestDetailPath[item.type](item.id)}
-                  className="flex items-center gap-3 rounded-xl border border-line bg-paper p-4"
+                  className="flex items-center gap-3 studio-card p-4"
                 >
                   <div className="min-w-0 flex-1">
                     <p className="font-mono text-sm font-semibold">{item.reference}</p>
@@ -194,7 +194,7 @@ export function RequestsPage() {
               </li>
             ))}
           </ul>
-          <div className="hidden overflow-x-auto rounded-xl border border-line bg-paper md:block">
+          <div className="hidden overflow-x-auto studio-card md:block">
             <table className="w-full text-left text-sm">
               <caption className="sr-only">Liste des demandes</caption>
               <thead className="border-b border-line bg-ivory text-xs tracking-wide text-charcoal/60 uppercase">

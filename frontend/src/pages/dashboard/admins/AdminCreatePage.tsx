@@ -35,7 +35,9 @@ export function AdminCreatePage() {
     const { admin, invitation } = createAdmin.data;
     return (
       <div className="mx-auto max-w-2xl space-y-6">
-        <h1 className="text-2xl font-extrabold text-forest">Compte créé</h1>
+        <h1 className="font-display text-3xl font-bold tracking-[-0.03em] sm:text-4xl">
+          Compte créé
+        </h1>
         <p className="text-charcoal/75">
           Le compte de <strong>{admin.fullName}</strong> ({admin.email}) est en attente
           d’activation. Transmettez-lui le lien ci-dessous pour qu’il définisse son mot de passe.
@@ -64,7 +66,9 @@ export function AdminCreatePage() {
         <ArrowLeft aria-hidden="true" className="size-4" />
         Administrateurs
       </Link>
-      <h1 className="text-2xl font-extrabold text-forest">Nouvel administrateur</h1>
+      <h1 className="font-display text-3xl font-bold tracking-[-0.03em] sm:text-4xl">
+        Nouvel administrateur
+      </h1>
 
       {createAdmin.isError && (
         <p role="alert" className="rounded-lg bg-red-50 px-4 py-3 text-sm text-red-800">
@@ -75,7 +79,7 @@ export function AdminCreatePage() {
       <form
         onSubmit={(event) => void onSubmit(event)}
         noValidate
-        className="space-y-5 rounded-xl border border-line bg-paper p-5 sm:p-6"
+        className="space-y-5 studio-card p-5 sm:p-6"
       >
         <FormField id="admin-full-name" label="Nom complet" error={errors.fullName?.message}>
           <input

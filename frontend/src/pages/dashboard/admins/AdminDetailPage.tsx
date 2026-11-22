@@ -23,7 +23,7 @@ import {
   adminProfileFormSchema,
 } from '../../../modules/admins/schemas/adminSchema';
 
-const sectionClassName = 'space-y-4 rounded-xl border border-line bg-paper p-5 sm:p-6';
+const sectionClassName = 'space-y-4 studio-card p-5 sm:p-6';
 
 function MutationError({ error }: { error: unknown }) {
   if (!error) return null;
@@ -259,7 +259,7 @@ export function AdminDetailPage() {
       ) : (
         <>
           <div>
-            <h1 className="text-2xl font-extrabold text-forest">
+            <h1 className="font-display text-3xl font-bold tracking-[-0.03em] sm:text-4xl">
               {admin.data.fullName}
               {admin.data.id === user.id && (
                 <span className="text-base font-normal text-charcoal/60"> (vous)</span>

@@ -57,13 +57,13 @@ export function MessagesPage() {
   return (
     <div className="mx-auto max-w-6xl space-y-6">
       <div>
-        <h1 className="text-2xl font-extrabold text-forest">Messages</h1>
+        <h1 className="font-display text-3xl font-bold tracking-[-0.03em] sm:text-4xl">Messages</h1>
         <p className="mt-1 text-sm text-charcoal/70">
           Messages reçus depuis le formulaire de contact du site.
         </p>
       </div>
 
-      <div className="flex flex-col gap-3 rounded-xl border border-line bg-paper p-4 lg:flex-row">
+      <div className="flex flex-col gap-3 studio-card p-4 lg:flex-row">
         <form role="search" onSubmit={submitSearch} className="flex flex-1 gap-2">
           <label htmlFor="messages-search" className="sr-only">
             Rechercher par référence, nom, email, téléphone ou objet
@@ -150,7 +150,7 @@ export function MessagesPage() {
               <li key={item.id}>
                 <Link
                   to={trackedDetailPath.contact(item.id)}
-                  className="flex items-center gap-3 rounded-xl border border-line bg-paper p-4 hover:border-forest/30"
+                  className="flex items-center gap-3 studio-card p-4 hover:border-forest/30"
                 >
                   <div className="min-w-0 flex-1">
                     <div className="flex flex-wrap items-center gap-2">

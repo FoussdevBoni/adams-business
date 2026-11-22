@@ -31,7 +31,9 @@ export function ServicesListPage() {
     <div className="mx-auto max-w-5xl space-y-6">
       <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
         <div>
-          <h1 className="text-2xl font-extrabold text-forest">Services</h1>
+          <h1 className="font-display text-3xl font-bold tracking-[-0.03em] sm:text-4xl">
+            Services
+          </h1>
           <p className="mt-1 text-sm text-charcoal/70">
             Services présentés sur le site, dans l’ordre d’affichage.
           </p>
@@ -60,7 +62,7 @@ export function ServicesListPage() {
           description="Créez le premier service présenté sur le site."
         />
       ) : (
-        <ol className="divide-y divide-forest/10 rounded-xl border border-line bg-paper">
+        <ol className="divide-y divide-forest/10 studio-card">
           {services.data.map((service, index) => (
             <li key={service.id} className="flex flex-wrap items-center gap-3 p-4">
               <div className="min-w-0 flex-1">
